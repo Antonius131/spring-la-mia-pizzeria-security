@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Pizze</title>
+</head>
+<body>
+	<h1>Le nostre pizze!</h1>
+	
+	<h3 th:if="${pizzas.isEmpty()}">Non ci sono pizze al momento</h3>
+	<table th:if="!${pizzas.isEmpty()}">
+	    <tr>
+	      <th>Nome</th>
+	      <th>Descrizione</th>
+	      <th>Prezzo</th>
+	      <th>Gestisci</th>
+	    </tr>
+	    <tr
+	    	th:each = "pizza : ${pizzas}"
+	    	th:object="${pizza}"
+	    >
+	      <td>
+	      	[[*{name}]]
+	      </td>
+	      <td>
+	      	[[*{description}]]
+	      </td>
+	      <td>
+	      	[[*{price}]]
+	      </td>
+	      <td><a th:href="@{/edit/{id}(id = ${pizza.id})}">Modifica</a></td>
+	      <td><a th:href="@{/delete/{id}(id = ${pizza.id})}">Elimina</a></td>
+	    </tr>
+	</table>
+	<a href="/create">Aggiungi una pizza</a>
+</body>
+</html>

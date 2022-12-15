@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ingredienti</title>
+</head>
+<body>
+
+	<h1>I nostri ingredienti</h1>
+	
+	<ul
+		th:each = "ingredient : ${ingredients}"
+		th:object = "${ingredient}"
+	>
+		<li>
+			[[*{name}]] - 
+			<a th:href="@{/ingredients/edit/{id}(id = *{id})}"> Modifica</a>
+			<span>-</span>
+			<a th:href="@{/ingredients/delete/{id}(id = *{id})}"> Elimina</a>
+			<ul>
+				<li>
+					[[*{pizzas}]] -
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<a href="/ingredients/create">Crea nuovo ingrediente</a>
+</body>
+</html>

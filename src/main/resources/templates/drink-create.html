@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Aggiungi un nuovo drink</h1>
+	<form method="POST" action="/drinks/create" th:object="${drink}">
+		<label>Nome</label><br>
+		<input type="text" name="name" th:field="*{name}">
+		<br>
+		<label>Descrizione</label><br>
+		<textarea name="description" th:field="*{description}"></textarea>
+		<br>
+		<label>Prezzo</label><br>
+		<input type="number" name="price" th:field="*{price}">
+		<br>
+		<button type="submit">Aggiungi</button>
+	</form>
+	<div th:if="${errors}" class="col-12">
+		<h4 class="text-danger">Errori:</h4>
+		<ul>
+			<li th:each="error : ${errors}" th:object="${error}">
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

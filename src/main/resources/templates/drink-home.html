@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>I nostri drink</title>
+</head>
+<body>
+	<h1>I nostri drink</h1>
+	<table th:if="!${drinks.isEmpty()}">
+	    <tr>
+	      <th>Nome</th>
+	      <th>Descrizione</th>
+	      <th>Prezzo</th>
+	      <th>Gestisci</th>
+	    </tr>
+	    <tr
+	    	th:each = "drink : ${drinks}"
+	    	th:object="${drink}"
+	    >
+	      <td>
+	      	[[*{name}]]
+	      </td>
+	      <td>
+	      	[[*{description}]]
+	      </td>
+	      <td>
+	      	[[*{price}]]
+	      </td>
+	      <td><a th:href="@{/drinks/edit/{id}(id=${drink.id})}">Modifica</a></td>
+	      <td><a th:href="@{/drinks/delete/{id}(id=${drink.id})}">Elimina</a></td>
+	    </tr>
+	</table>
+	<a href="/drinks/create">Aggiungi un drink</a>
+</body>
+</html>

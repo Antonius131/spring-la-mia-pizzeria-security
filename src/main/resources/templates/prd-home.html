@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tutti i prodotti</title>
+</head>
+<body>
+
+	<h1>Pizze e Drink</h1>
+	
+	<h3 th:if="${products.isEmpty()}">La lista è vuota</h3>
+	<table th:if="!${products.isEmpty()}">
+	    <tr>
+	      <th>Nome</th>
+	      <th>Descrizione</th>
+	      <th>Prezzo</th>
+	    </tr>
+	    <tr
+	    	th:each = "product : ${products}"
+	    	th:object="${product}"
+	    >
+	      <td>
+	      	[[*{name}]]
+	      </td>
+	      <td>
+	      	[[*{description}]]
+	      </td>
+	      <td>
+	      	[[*{price}]]
+	      </td>
+	    </tr>
+	</table>
+</body>
+</html>

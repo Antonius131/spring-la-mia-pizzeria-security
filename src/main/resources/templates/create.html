@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crea nuova pizza</title>
+</head>
+<body>
+
+	<h1>Aggiungi una nuova pizza</h1>
+	<form method="POST" action="/create" th:object="${pizza}">
+		<label>Nome</label><br>
+		<input type="text" name="name" th:field="*{name}">		
+		<br>
+		
+		<label>Descrizione</label><br>
+		<textarea name="description" th:field="*{description}"></textarea>
+		<br>
+		
+		<label>Prezzo</label><br>
+		<input type="number" name="price" th:field="*{price}">
+		<br>
+		
+		<label>Promozione</label>
+		<br>
+		<select name="promo" style="margin-bottom: 12px">
+			<option
+				th:value="null"
+				th:field="${pizza.promo}"
+			>
+				-
+			</option>
+			<option
+				th:each="promo : ${promos}"
+				th:object="${promo}"
+				
+				th:value="*{id}"
+				th:field="${pizza.promo}"
+			>
+				[[*{title}]]
+			</option>
+		</select>
+		<br>
+		
+		<div
+			th:each = "ingredient : ${ingredients}"
+			th:object = "${ingredient}"
+		>
+			<input
+				type="checkbox"
+				name="ingredients"
+				
+				th:value="*{id}"
+				th:field="${pizza.ingredients}"
+			>
+			<label>[[*{name}]]</label>
+		</div>
+		
+		<button type="submit">Aggiungi</button>
+	</form>
+	<div th:if="${errors}" class="col-12">
+		<h4 class="text-danger">Errori:</h4>
+		<ul>
+			<li th:each="error : ${errors}" th:object="${error}">
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

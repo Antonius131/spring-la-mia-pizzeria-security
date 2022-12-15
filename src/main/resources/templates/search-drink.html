@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Cerca drink</title>
+</head>
+<body>
+
+	<h1>Cerca un drink</h1>
+	<form>
+		<label>Name: </label>
+		<input type="text" name="q" th:value="${query}">
+		<br><br>
+		<input type="submit" value="Cerca">
+	</form>
+	<div>
+		<table th:if="${!drinks.isEmpty()}">
+			<tr>
+				<th>Nome</th>
+				<th>Descrizione</th>
+				<th>Prezzo</th>
+			</tr>
+			<tr th:each="drink : ${drinks}" th:object="${drink}">
+				<td th:text="*{name}"></td>
+				<td th:text="*{description}"></td>
+				<td th:text="*{price}"></td>
+			</tr>
+		</table>
+		<h3 th:if="${drinks.isEmpty()}">Non ci sono drink al momento</h3>
+	</div>
+</body>
+</html>

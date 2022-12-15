@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Modifica di - [[*{name}]]</h1>
+	<form method="POST" action="/drinks/edit" th:object="${drink}">
+		<input type="number" name="id" th:field="*{id}" style="display:none">
+		<label>Nome</label><br>
+		<input type="text" name="name" th:field="*{name}">
+		<br>
+		<label>Descrizione</label><br>
+		<textarea name="description" th:field="*{description}"></textarea>
+		<br>
+		<label>Prezzo</label><br>
+		<input type="number" name="price" th:field="*{price}">
+		<br>
+		<button type="submit">Modifica drink</button>
+	</form>
+	<div th:if="${errors}" class="col-12">
+		<h3 class="text-danger">Errors:</h3>
+		<ul>
+			<li th:each="error : ${errors}" th:object="${error}">
+				[[*{defaultMessage}]]
+			</li>
+		</ul>
+	</div>
+	
+</body>
+</html>

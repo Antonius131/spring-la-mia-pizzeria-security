@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Crea ingrediente</title>
+</head>
+<body>
+	
+	<h1>Crea un nuovo ingrediente</h1>
+	
+	<form
+		method="POST"
+		action="/ingredients/create"
+		th:object="${ingredient}"
+	>
+		<label>Nome ingrediente</label>
+		<br>
+		<input type="text" name="name" th:field="*{name}" />
+		<br>
+		
+		<div
+			th:each = "pizza : ${pizzas}"
+			th:object = "${pizza}"
+		>
+			<input
+				type="checkbox"
+				name="pizzas"
+				
+				th:value="*{id}"
+				th:field="${ingredient.pizzas}"
+			>
+			<label>[[*{name}]]</label>
+		</div>
+		<input type="submit" value="crea" />
+	</form>
+</body>
+</html>
