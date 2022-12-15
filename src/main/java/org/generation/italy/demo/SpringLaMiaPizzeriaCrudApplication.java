@@ -8,10 +8,14 @@ import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Ingredient;
 import org.generation.italy.demo.pojo.Pizza;
 import org.generation.italy.demo.pojo.Promo;
+import org.generation.italy.demo.pojo.Role;
+import org.generation.italy.demo.pojo.User;
 import org.generation.italy.demo.service.DrinkService;
 import org.generation.italy.demo.service.IngredientService;
 import org.generation.italy.demo.service.PizzaService;
 import org.generation.italy.demo.service.PromoService;
+import org.generation.italy.demo.service.RoleService;
+import org.generation.italy.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +31,10 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	private PromoService promoService;
 	@Autowired
 	private IngredientService ingService;
+	@Autowired
+	private RoleService roleService;
+	@Autowired
+	private UserService userService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -89,6 +97,25 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkService.saveDrinks(d1);
 		drinkService.saveDrinks(d2);
 		drinkService.saveDrinks(d3);
+		
+		
+		
+		
+		
+		
+		//creating users and roles
+		
+		Role userRole = new Role("User");
+		Role adminRole = new Role("Admin");
+		
+		roleService.save(userRole);
+		roleService.save(adminRole);
+		
+		User user1 = new User("AmalJomon", "amalPsw", userRole);
+		User user2 = new User("Antonio", "antonioPsw", adminRole);
+		
+		userService.save(user1);
+		userService.save(user2);
 	}
 }
 
