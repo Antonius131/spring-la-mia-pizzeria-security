@@ -18,8 +18,7 @@ public class SecurityConf {
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests()
-				.requestMatchers(HttpMethod.GET, "/", "/**").hasAuthority("User")
-				.requestMatchers(HttpMethod.GET, "/", "/**").hasAuthority("Admin")
+				.requestMatchers(HttpMethod.GET, "/", "/**").hasAnyAuthority("User", "Admin")
 				.requestMatchers(HttpMethod.POST, "/admin", "/admin/**").hasAuthority("Admin")
 				.requestMatchers("/**").permitAll()
 			.and().formLogin()
