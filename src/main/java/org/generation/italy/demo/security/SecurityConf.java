@@ -3,7 +3,6 @@ package org.generation.italy.demo.security;
 import org.generation.italy.demo.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,8 +17,7 @@ public class SecurityConf {
 	public SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
 		
 		http.authorizeHttpRequests()
-				.requestMatchers(HttpMethod.GET, "/", "/**").hasAnyAuthority("User", "Admin")
-				.requestMatchers(HttpMethod.POST, "/admin", "/admin/**").hasAuthority("Admin")
+				.requestMatchers("/admin", "/admin/**").hasAuthority("Admin")
 				.requestMatchers("/**").permitAll()
 			.and().formLogin()
 			.and().logout()

@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <title>Modifica</title>
 </head>
-<body>
+<body th:object="${pizza}">
 
 	<h1>Modifica di - [[*{name}]]</h1>
-	<form method="POST" action="/edit" th:object="${pizza}">
+	<form method="POST" action="/edit" >
 		<input type="number" name="id" th:field="*{id}" style="display:none">
 		<label>Nome</label><br>
 		<input type="text" name="name" th:field="*{name}">
