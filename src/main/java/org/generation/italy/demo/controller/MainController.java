@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/user")
 public class MainController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class MainController {
 	@Autowired 
 	private IngredientService ingService;
 	
-	@GetMapping("/")
+	@GetMapping("/pizzas")
 	public String getPizzas(Model model) {
 		
 		List<Pizza> pizzas = pizzaService.findAll();
